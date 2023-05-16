@@ -7,11 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       '^/api/login$': {
-        target: 'http://10.44.23.185:8080',
+        target: 'http://localhost:8080',
         rewrite: (path) => '/login'
       },
       '/api': {
-        target: 'http://10.44.23.185:8080',
+        target: 'http://localhost:8080',
       }
     }
   }
