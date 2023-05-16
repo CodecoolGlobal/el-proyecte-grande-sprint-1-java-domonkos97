@@ -24,7 +24,7 @@ const Login = () => {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(user)
             })
-        if (response.status === 202) {
+        if (response.status === 200) {
             setErrorDisplay(<Alert severity="success">Yay! You are logged in!</Alert>);
             return redirect('/home');
         } else {
