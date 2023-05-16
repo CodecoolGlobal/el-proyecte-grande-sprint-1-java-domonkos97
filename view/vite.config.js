@@ -6,8 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
+      '^/api/login$': {
+        target: 'http://10.44.23.185:8080',
+        rewrite: (path) => '/login'
+      },
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://10.44.23.185:8080',
       }
     }
   }
