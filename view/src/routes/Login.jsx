@@ -17,8 +17,10 @@ const Login = () => {
 
     const handleStatus = async(e) => {
         e.preventDefault();
-        const user = {"userName": userName, "password": password};
-        let response = await fetch('/api/users/login',
+        const user = {
+            "userName": userName,
+            "password": password};
+        let response = await fetch('/api/login',
             {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -31,7 +33,6 @@ const Login = () => {
             setErrorDisplay(<Alert severity="error">There is something wrong with the password or the name! Please try again!</Alert>);
         }
     }
-
 
 
     return (
