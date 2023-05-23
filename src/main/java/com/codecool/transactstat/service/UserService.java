@@ -1,6 +1,7 @@
 package com.codecool.transactstat.service;
 
 import com.codecool.transactstat.model.UserEntity;
+import com.codecool.transactstat.model.UserRoles;
 import com.codecool.transactstat.model.dto.DtoFactory;
 import com.codecool.transactstat.model.dto.UserDTO;
 import com.codecool.transactstat.persistent.UserRepository;
@@ -47,6 +48,7 @@ public class UserService implements UserDetailsService {
         if (!isExisting) {
             log.info("***** CREATED USER {} *****", userEntity.getUserName());
             userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+            userEntity.setRole(UserRoles.ROLE_USER);
             userRepository.save(userEntity);
         }
     }
@@ -68,12 +70,6 @@ public class UserService implements UserDetailsService {
                .map(DtoFactory::createDTO)
                .collect(Collectors.toList());
     }
-
-    /*public Optional<Long> authenticate(UserDTO user){
-        UserEntity searched = userRepository.getUserEntityByUserName(user.getUserName()).
-                orElseThrow(() -> new UsernameNotFoundException(user.getUserName()));
-        return Optional.ofNullable(searched).map(UserEntity::getId);
-    } */
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
