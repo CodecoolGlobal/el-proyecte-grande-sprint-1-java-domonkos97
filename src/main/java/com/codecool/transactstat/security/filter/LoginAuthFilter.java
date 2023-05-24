@@ -3,6 +3,7 @@ package com.codecool.transactstat.security.filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.codecool.transactstat.model.UserEntity;
+import com.codecool.transactstat.model.UserRoles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -35,7 +36,9 @@ public class LoginAuthFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+       log.info("hi");
         try {
+            log.info("kiskutya");
             String data = IOUtils.toString(request.getReader());
             UserEntity user = new ObjectMapper().readValue(data, UserEntity.class);
             String username = user.getUserName();
@@ -60,7 +63,8 @@ public class LoginAuthFilter extends UsernamePasswordAuthenticationFilter {
                 .sign(algorithm);
         Cookie cookie = new Cookie("token",token);
         cookie.setMaxAge(60*10*10);
-        cookie.setSecure(true);
+        cookie.setSecure(false);
+        //chain.doFilter(request,response);
         response.addCookie(cookie);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
     }
