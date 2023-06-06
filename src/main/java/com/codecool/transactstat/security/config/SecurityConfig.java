@@ -42,10 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/users").permitAll() // FOR API TESTING
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/wallets").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/wallets").permitAll() // FOR API TESTING
                 .antMatchers("/api/users/**").hasRole("USER")
+                //.antMatchers("/api/users/**").permitAll() // FOR API TESTING
                 .antMatchers("/api/transactions**").hasRole("USER")
                 .antMatchers("/api/wallets/**").hasRole("USER")
                 .antMatchers("/api/v1/users**").hasRole("USER")
