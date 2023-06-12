@@ -1,20 +1,28 @@
 import './App.css'
 import {useEffect, useState} from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 import DashBoard from "./routes/DashBoard.jsx";
 import AddTransaction from "./routes/AddTransaction.jsx";
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./routes/Login.jsx";
-import Register from "./routes/Register.jsx";
+import Signup from "./routes/Signup.jsx";
 import React from 'react';
 import Cookies from "js-cookie";
 import MainPage from "./routes/MainPage.jsx";
 import NavigationBar from "./components/NavigationBar.jsx";
-import Sidebar from "./components/Sidebar.jsx";
+//import Sidebar from "./components/Sidebar.jsx";
+import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 
-function App() {
 
+function App(){
+
+  const { collapseSidebar } = useProSidebar();
   const [darkMode, setDarkMode] = useState(false)
 
   const [transactions, setTransactions] = useState([])
@@ -90,9 +98,23 @@ function App() {
   return (
         <Router>
             <div className="App">
-              <Sidebar></Sidebar>
+              <Sidebar  style={{height: "100vh",position: "sticky", top:"0", backgroundColor: "blue"}}>
+                <Menu>
+                  <MenuItem icon={<MenuOutlinedIcon></MenuOutlinedIcon>}
+                            onClick={() => collapseSidebar()}
+                            style={{textAlign: "center"}}>
+                    <h2>Menu</h2>
+                  </MenuItem>
+                  <MenuItem icon={<HomeOutlinedIcon></HomeOutlinedIcon>}
+                            component={<Link to="/home"> </Link>}>
+                    Home
+                  </MenuItem>
+                  <MenuItem icon={<AccountBalanceWalletOutlinedIcon></AccountBalanceWalletOutlinedIcon>}>Wallets</MenuItem>
+                  <MenuItem icon={<AccountBalanceOutlinedIcon></AccountBalanceOutlinedIcon>}>Transactions</MenuItem>
+                  <MenuItem icon={<BarChartOutlinedIcon></BarChartOutlinedIcon>}>Statistics</MenuItem>
+                </Menu>
+              </Sidebar>
               <div className="content">
-                <NavigationBar className='position-relative' wallets={wallets} setCurrentWallets={setCurrentWallet} user={userId} mode={darkMode} setDarkMode={setDarkMode}/>
                 <Routes>
                   <Route exact path='/'
                          element={ <MainPage />} />
@@ -111,8 +133,8 @@ function App() {
                   <Route exact path="/Login"
                          element={<Login/>} />
 
-                  <Route exact path="/Register"
-                         element={<Register />} />
+                  <Route exact path="/Signup"
+                         element={<Signup />} />
                 </Routes>
               </div>
             </div>
