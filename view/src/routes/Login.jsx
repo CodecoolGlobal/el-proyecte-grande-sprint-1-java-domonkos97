@@ -36,12 +36,11 @@ const Login = () => {
 
 
     return (
-        <div>
-            <div className="toolbar-height"></div>
+        <div className="form-container">
             {errorDisplay}
             <div className='container-login'>
                 <form onSubmit={handleStatus}>
-                    <h4 style={{color: 'white', margin: '100px auto 50px auto', textAlign:'center'}}>Sign In</h4>
+                    <h4 style={{color: 'white', margin: '50px auto 50px auto', textAlign:'center'}}>Sign In</h4>
                         <div className="socials">
                             <Link to='google.com' className='social-button'><GoogleIcon></GoogleIcon></Link>
                             <Link to='google.com' className='social-button'><FacebookIcon></FacebookIcon></Link>
@@ -51,17 +50,15 @@ const Login = () => {
                             <p className='white-color'>
                                 Sign In With Email
                             </p>
-                            <input type="text" placeholder='Name' className='input-field' name="uname" required value={userName} onChange={(e) => {setUserName(e.target.value)}}/>
-                            <input type="email" placeholder='Email'  className='input-field'/>
+                            <input type="text" placeholder='Name' className='input-field' required value={userName} onChange={(e) => {setUserName(e.target.value)}}/>
                             <input type="password" placeholder='Password'  className='input-field' value={password} onChange={(event) => {
                                 setPassword(event.target.value);
                             }
                             }/>
                             <Link to='gmail.com' className='forgot-your-password'>Forgot your password?</Link>
-                            <p className='sign-up'>Don't have and account? Sign Up <Link to='/register' className='sign-up-sign'>here</Link>!</p>
+                            <p className='sign-up'>Don't have and account? Sign Up <Link to='/signup' className='sign-up-sign'>here</Link>!</p>
                             <input type="submit" value='Sign In' className='submit-button'/>
                         </div>
-                    <div className='container-right'></div>
                 </form>
             </div>
         </div>

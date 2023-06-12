@@ -8,7 +8,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import {useState} from "react";
 
-const Sidebar = ({}) => {
+const OldSidebar = ({}) => {
     const [active, setActive] = useState("");
     const settings = [
         {
@@ -81,4 +81,4 @@ const Sidebar = ({}) => {
     )
 }
 
-export default Sidebar;
+export default OldSidebar;
