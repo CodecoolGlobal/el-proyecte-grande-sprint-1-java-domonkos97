@@ -37,7 +37,6 @@ const DashBoard = ({
         return (
             <>
                 <div>
-                    <div className="toolbar-height"></div>
                     <Box style={{margin: '50px'}}>
                         <Header title={`Dashboard - ${currentWallet.title} `} subtitles={`Welcome, ${userId}`}
                                 titleSize='large'></Header>
