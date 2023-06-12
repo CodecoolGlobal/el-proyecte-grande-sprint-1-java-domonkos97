@@ -2,7 +2,6 @@ import {useState} from "react";
 
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import {Link} from "react-router-dom";
-import NavigationBar from "../components/NavigationBar.jsx";
 
 const AddTransaction = ({ wallets, walletId }) => {
     const menuRoute = '/Add'
@@ -38,7 +37,6 @@ const AddTransaction = ({ wallets, walletId }) => {
         <div>
             <div className="toolbar-height"></div>
             {/*sidebar to app.jsx*/}
-            <NavigationBar menuRoute={menuRoute} urlRoute={urlRoute} wallets={wallets}/>
             <h5 className='transaction-header flex-container width-83 top-5'>Add New Transaction</h5>
             <div className='card-grey width-83 center'>
             <form onSubmit={handleSubmit} className='width-83 center margin-10'>
